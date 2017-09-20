@@ -1,0 +1,231 @@
+
+html, body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+div {
+	margin: 0;
+	padding: 0;
+	cursor: default;
+}
+.header {
+	width: 100%; 
+	height:50px; 
+	position: absolute; 
+	top: 0; 
+	left: 0;
+	background-color: #03A9F4;
+	z-index: 20;
+}
+
+.main {
+	position: absolute;
+	display: inline-block;
+	width: 50%;
+	height: 50%;
+	z-index: 5;
+}
+
+.main-first { 
+	top: 0; 
+	left: 0;
+}
+.main-two { 
+	top: 0; 
+	left: 50%;
+}
+.main-three { 
+	top: 50%; 
+	left: 0;
+}
+.main-four { 
+	top: 50%; 
+	left: 50%;
+}
+
+#input-partition {
+	position: absolute; 
+	left: 25%;
+	top: 8px;
+	height: 30px;
+	font-size: 90%;
+	font-weight: bold;
+	width: 50%;
+	color: #86888d;
+	padding-left: 10px;
+	margin: auto;
+	z-index: 10;
+	border: 0;
+}
+
+.generator {
+	position: absolute; 
+	left: 1.5%;
+	top: 10px;
+	height: 30px;
+	font-size: 90%;
+	font-weight: bold;
+	width:auto;
+	color: #86888d;
+	margin: auto;
+	padding: auto;
+	z-index: 10;
+	border: 0;
+}
+
+.restart {
+	position: absolute; 
+	left: 17%;
+	top: 10px;
+	height: 30px;
+	font-size: 90%;
+	font-weight: bold;
+	width:auto;
+	color: #86888d;
+	margin: auto;
+	padding: auto;
+	z-index: 10;
+	border: 0;
+}
+
+
+.partition-bar {
+	height: 20px; 
+	width: 80%;
+	position: relative; 
+	top: 50%; 
+	left: 5%;
+	background-color: #8BC34A;
+	z-index: 5;
+}
+
+
+.partition-text {
+	position: absolute; 
+	top: 12%; 
+	left: 10%;
+	font-weight: bold;
+	font-size: 160%;
+}
+
+.freespace-info {
+	border: 2px solid green;
+	position: absolute; 
+	top: 66%; 
+	left: 11%;
+	background-color: transparent;
+	z-index:10;
+}
+
+.partitionspace-info {
+	border: 2px solid red;
+	position: absolute; 
+	top: 66%; 
+	left: 35%;
+	background-color: transparent;
+	z-index:10;
+}
+
+.inputspace-info {
+	border: 2px solid blue;
+	position: absolute; 
+	top: 66%; 
+	left: 64%;
+	background-color: transparent;
+	z-index:10;
+}
+
+
+.fsl{
+	display:none;
+	position:absolute; 
+	font-size: 80%;
+	margin: 0;
+	border-bottom: 2px solid green;
+	top: 71%; 
+	left: 11%;
+	line-height: 40%;
+}
+
+.psl{
+	display:none;
+	position:absolute; 
+	font-size: 80%;
+	margin: 0;
+	border-bottom: 2px solid red;
+	top: 71%; 
+	left: 35%;
+	line-height: 40%;
+}
+
+.isl{
+	display:none;
+	position:absolute; 
+	font-size: 80%;
+	overflow-y:auto;
+	height:150px;
+	width:150px;
+	margin: 0;
+	border-bottom: 2px solid blue;
+	top: 71%; 
+	left: 64%;
+	line-height: 40%;
+	z-index: 20;
+}
+
+#help {
+	left:97%;
+	position: absolute; 
+	top: 10px;
+	margin: auto;
+	padding: auto;
+	z-index: 100;
+	border: 0;
+}
+
+.helpinfo-text {
+	position: absolute; 
+	top: 40%; 
+	left: 10%;
+	font-size: 100%;
+}
+
+#firsthelp { 
+	display:none;
+	background-color: white;
+	top: 0; 
+	left: 0;
+	z-index:15;
+}
+#twohelp { 
+	display:none;
+	background-color: white;
+	top: 0; 
+	left: 50%;
+	z-index:15;
+}
+#threehelp { 
+	display:none;
+	background-color: white;
+	top: 50%; 
+	left: 0;
+	z-index:15;
+}
+#fourhelp { 
+	
+	display:none;
+	background-color: white;
+	top: 50%; 
+	left: 50%;
+	z-index:15;
+}
+
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+

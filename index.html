@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Memory management</title>
+	
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<script src="./index.js"></script>
+</head>
+<body>
+
+	<div class="header">
+
+		<button class="generator" onclick="fillGeneric(); writespaces(); this.disabled=true;">Generate partitions</button>
+
+		<button class="restart" value="Refresh Page" onClick="window.location.reload();">Restart</button>
+
+		<input id="input-partition"
+			   onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+			   onkeydown="insertPartitions(this)"
+			   placeholder="Insert partition size in kB">
+
+		<p id = "help"> <a href="https://www.tutorialspoint.com/operating_system/os_memory_allocation_qa2" target="_blank"> 
+		<img border="0" alt="Tutorial" src="img.gif" width="32px" height="32px">
+		</a>
+		</p>
+	</div>
+
+	<div class="main main-first">
+		<p class="partition-text" onclick="helpshow(0);">First Fit </p>
+
+		
+		<div id="firstPartition" class="partition-bar"></div>
+		<button id="freeSpaceFirst" class="freespace-info" onclick="holesshow(1);" > Free Space: </button>
+			<p id ="freespace-list" class="fsl" > </p>
+		<button class="partitionspace-info" onclick ="partitionshow(1);"> Partitions Space: </button>
+			<p id ="partitionspace-list" class="psl"> </p>
+		<button id = "inputSpaceFirst" class="inputspace-info" onclick ="inputsshow(1);"> Input Space: </button>
+			<p id ="inputspace-list" class ="isl" > </p>
+
+	</div>
+
+	<div class="main main-two">
+		<p class="partition-text" onclick="helpshow(1);">Next Fit </p>
+		
+		<div id="nextPartition" class="partition-bar"></div>
+				<button id="freeSpaceNext" class="freespace-info" onclick="holesshow(2);"> Free Space: </button>
+					<p id ="freespaceN-list" class="fsl"> </p>
+				<button class="partitionspace-info" onclick ="partitionshow(2);"> Partitions Space: </button>
+					<p id ="partitionspaceN-list" class="psl"> </p>
+				<button id = "inputSpaceNext" class="inputspace-info" onclick ="inputsshow(2);"> Input Space: </button>
+					<p id ="inputspaceN-list" class ="isl" > </p>					
+	</div>
+
+	<div class="main main-three">
+		<p class="partition-text" onclick="helpshow(2);">Best Fit </p>
+		
+		<div id = "bestPartition" class="partition-bar"></div>
+				<button id="freeSpaceBest" class="freespace-info" onclick="holesshow(3);"> Free Space: </button>
+					<p id ="freespaceB-list" class="fsl"> </p>
+				<button class="partitionspace-info" onclick ="partitionshow(3);"> Partitions Space: </button>
+					<p id ="partitionspaceB-list" class="psl"> </p>
+				<button id = "inputSpaceBest" class="inputspace-info" onclick ="inputsshow(3);"> Input Space: </button>
+					<p id ="inputspaceB-list" class ="isl" > </p>
+	</div>
+
+	<div class="main main-four">
+		<p class="partition-text" onclick="helpshow(3);" >Worst Fit </p>
+		
+		<div id="worstPartition" class="partition-bar"></div>
+				<button id = "freeSpaceWorst" class="freespace-info" onclick="holesshow(4)";> Free Space: </button>
+					<p id ="freespaceW-list" class="fsl"> </p>
+				<button class="partitionspace-info" onclick ="partitionshow(4);"> Partitions Space: </button>
+					<p id ="partitionspaceW-list" class="psl"> </p>
+				<button id = "inputSpaceWorst" class="inputspace-info" onclick ="inputsshow(4);"> Input Space: </button>
+					<p id ="inputspaceW-list" class ="isl" > </p>
+	</div>
+
+	<div class="main" id = "firsthelp">
+		<p class="partition-text" style="background-color:#03A9F4" onclick="helpshow(0)">First Fit </p>
+			
+		<p class="helpinfo-text"> 
+				Prvi odgovarajuci (FIRST FIT): upravljac memorijom pretrazuje povezanu listu od pocetka
+				do kraja i novi proces stavlja u prvu rupu koja je dovoljna velika. 
+				Ako je rupa iste velicine kao i sam proces, jednostavno menjamo tip sloga iz H (rupa) u P (proces), 
+				ako je rupa veca, menjamo tip iz H na P, postavimo velicinu, 
+				zatim iza tog sloga ubacimo jos jedan koji ce reprezentovati rupu koja preostaje. 
+				Ovo je najbolji algoritam.
+
+		</p>
+
+	</div>
+
+	<div class="main" id = "twohelp">
+		<p class="partition-text" style="background-color:#03A9F4" onclick="helpshow(1)" >Next Fit </p>
+
+		<p class="helpinfo-text">
+			Sledeci odgovarajuci (NEXT FIT): radi na isti nacin kao first fit, samo ne krece svaki put od
+			pocetka liste, vec od mesta gde je poslednji put stao. 
+			Pokazuje slicne performanse kao first fit.
+
+		</p>
+					
+	</div>
+
+	<div class="main" id = "threehelp">
+		<p class="partition-text" style="background-color:#03A9F4" onclick="helpshow(2)">Best Fit </p>
+
+		<p class="helpinfo-text"> 
+			Najmanja particija (BEST FIT): svaki put pretrazuje celu listu i trazi najmanju rupu u koju
+			moze stati dati proces. Sporiji je od prva dva algoritma jer mora svaki put preci celu listu.
+			Pored toga dolazi do vece spoljasnje segmentacije (gubimo vise memorije nego kod prethodna
+			dva algoritma): posto uvek trazimo najmanju mogucu rupu - a mala je verovatnoca da ce ta
+			rupa biti po bajtu iste velicine kao proces, pa dobijamo mnostvo malih rupa koja se ne mogu
+			ni na sta iskoristiti (bez grupisanja na jedno mesto - a to je jako spora operacija i izbegava se).
+
+		</p>
+		
+		
+	</div>
+
+	<div class="main" id = "fourhelp">
+		<p class="partition-text" style="background-color:#03A9F4" onclick="helpshow(3)">Worst Fit </p>
+
+		<p class="helpinfo-text">
+
+			Najveca particija (WORST FIT): radi na isti nacin kao best fit, samo sto uvek trazi najvecu
+			mogucu rupu. Pretpostavka je sledeca: ako proces stavimo u najvecu mogucu rupu, imamo
+			vecu sansu da ostatak bude dovoljno veliko da u njega stane neki drugi proces. Simulacije su
+			pokazale da je worst fit najlosiji algoritam.
+
+		</p>
+				
+	</div>
+
+</body>
+</html>
